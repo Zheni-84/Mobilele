@@ -3,8 +3,10 @@ package bg.softuni.mobilele.model.dto;
 import bg.softuni.mobilele.model.entity.OfferEntity;
 import bg.softuni.mobilele.model.entity.enums.EngineEnum;
 import bg.softuni.mobilele.model.entity.enums.TransmissionEnum;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -15,19 +17,40 @@ import java.math.BigDecimal;
 public class AddOfferDTO implements Serializable {
 
 	@NotNull
+	@Min(1)
+	private Long modelId;
+
+	@NotNull
 	private EngineEnum engine;
 
 	@NotEmpty
 	private String imageUrl;
 
+	@NotNull
 	private int mileage;
 
-	private BigDecimal price;
+	@Positive
+	@NotNull
+	private BigDecimal price; // Integer???
 
+	@Min(1900)
+	@NotNull
+	private int year;
+
+	@NotEmpty
 	private String description;
 
 	@NotNull
 	private TransmissionEnum transmission;
+
+	public Long getModelId() {
+		return modelId;
+	}
+
+	public AddOfferDTO setModelId(Long modelId) {
+		this.modelId = modelId;
+		return this;
+	}
 
 	public EngineEnum getEngine() {
 		return engine;

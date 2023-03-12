@@ -49,14 +49,15 @@ public class UserService {
 		if (success) {
 			login(userEntity.get());
 		} else {
-			//
+			logout();
 		}
 		return success;
 	}
 
 	public void login(UserEntity userEntity) {
 		currentUser.setLoggedIn(true)
-				.setName(userEntity.getFirstName() + " " + userEntity.getLastName());
+				.setName(userEntity.getFirstName() + " " + userEntity.getLastName())
+				.setEmail(userEntity.getEmail());
 	}
 
 	public void logout() {
